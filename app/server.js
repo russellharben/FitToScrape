@@ -12,12 +12,14 @@ var bodyParser = require("body-parser");
 
 // First, tell the console what server.js is doing
 console.log("\n***********************************\n" +
-            "Grabbing every thread name and link\n" +
-            "from reddit's webdev board:" +
-            "\n***********************************\n");
+  "Grabbing every thread name and link\n" +
+  "from reddit's webdev board:" +
+  "\n***********************************\n");
 
 // Express
 var app = express();
+
+var PORT = process.env.PORT || 3000;
 
 // Serve static public directory
 app.use(express.static('public'));
@@ -26,10 +28,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-  // An empty array to save the data that we'll scrape
-  var results = [];
+// An empty array to save the data that we'll scrape
+var results = [];
 // Making a request via axios for reddit's "webdev" board. We are sure to use old.reddit due to changes in HTML structure for the new reddit. The page's Response is passed as our promise argument.
-axios.get("https://old.reddit.com/r/webdev").then(function(response) {
+axios.get("https://old.reddit.com/r/webdev").then(function (response) {
 
   // Load the Response into cheerio and save it to a variable
   // '$' becomes a shorthand for cheerio's selector commands, much like jQuery's '$'
@@ -39,7 +41,7 @@ axios.get("https://old.reddit.com/r/webdev").then(function(response) {
   // console.log("Response Data = ", results);
   // With cheerio, find each p-tag with the "title" class
   // (i: iterator. element: the current element)
-  $("p.title").each(function(i, element) {
+  $("p.title").each(function (i, element) {
 
     // Save the text of the element in a "title" variable
     var title = $(element).text();
@@ -62,12 +64,12 @@ axios.get("https://old.reddit.com/r/webdev").then(function(response) {
 
 console.log("Server side results = ", results);
 
-app.get('/api/reddit', function(req, res){
+app.get('/api/reddit', function (req, res) {
   res.json(results)
-})  
+})
 
 
 // Set the app to listen on port 3000
-app.listen(3000, function() {
+app.listen(PORT, function () {
   console.log("App running on port 3000!");
 });
