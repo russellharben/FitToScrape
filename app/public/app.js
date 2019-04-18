@@ -9,7 +9,7 @@ function displayResults(results) {
     // Append each of the animal's properties to the table
     var tr = $("<tr>").append(
       $("<td>").text(result.title),
-      $("<td>").text(result.link)
+      $("<td>").html("<a>" + result.link + "</a>")
     );
 
     $("tbody").append(tr);
@@ -29,10 +29,12 @@ function setActive(selector) {
 // First thing: ask the back end for json with all animals
 $.ajax({
   method:"GET",
-  url:"/"
+  url:"api/reddit",
+  crossDomain: true
 }).then(function(response) {
   // Call our function to generate a table body
-  console.log("Data = ", JSON.stringify(response));
+  console.log("Client side response = ", response);
+  displayResults(response);
 });
 
 

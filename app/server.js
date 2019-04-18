@@ -5,7 +5,7 @@
 
 // Dependencies
 var express = require("express");
-var mongojs = require("mongojs");
+// var mongojs = require("mongojs");
 var cheerio = require("cheerio");
 var axios = require("axios");
 var bodyParser = require("body-parser");
@@ -57,13 +57,14 @@ axios.get("https://old.reddit.com/r/webdev").then(function(response) {
 
   // Log the results once you've looped through each of the elements found with cheerio
   // console.log(results);
-  console.log("RESULTS = ", results);
-
-  app.get('/', function(req, res){
-    res.send(results);
-  })  
 
 });
+
+console.log("Server side results = ", results);
+
+app.get('/api/reddit', function(req, res){
+  res.json(results)
+})  
 
 
 // Set the app to listen on port 3000
