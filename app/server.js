@@ -1,7 +1,4 @@
-// Students: Your work is in the front-end.
-// Run this server file with node/nodemon, then open public/app.js.
-
-// Get cracking and good luck!
+// Server file with node/nodemon --> open public/app.js.
 
 // Dependencies
 var express = require("express");
@@ -11,10 +8,10 @@ var axios = require("axios");
 var bodyParser = require("body-parser");
 
 // First, tell the console what server.js is doing
-console.log("\n***********************************\n" +
-  "Grabbing every thread name and link\n" +
-  "from reddit's webdev board:" +
-  "\n***********************************\n");
+// console.log("\n***********************************\n" +
+//   "Grabbing every thread name and link\n" +
+//   "from reddit's webdev board:" +
+//   "\n***********************************\n");
 
 // Express
 var app = express();
@@ -62,12 +59,9 @@ axios.get("https://old.reddit.com/r/webdev").then(function (response) {
 
 });
 
-console.log("Server side results = ", results);
-
 app.get('/api/reddit', function (req, res) {
   res.json(results)
 })
-
 
 // Set the app to listen on port 3000
 app.listen(PORT, function () {

@@ -41,27 +41,27 @@ $.ajax({
 // 2: Button Interactions
 // ======================
 
-// When user clicks the weight sort button, display table sorted by weight
-$("#title-sort").on("click", function () {
-  // Set new column as currently-sorted (active)
-  setActive("#title");
+// // When user clicks the weight sort button, display table sorted by weight
+// $("#title-sort").on("click", function () {
+//   // Set new column as currently-sorted (active)
+//   setActive("#title");
 
-  // Do an api call to the back end for json with all animals sorted by weight
-  $.getJSON("/weight", function (data) {
-    // Call our function to generate a table body
-    displayResults(data);
+//   // Do an api call to the back end for json with all animals sorted by weight
+//   $.getJSON("/weight", function (data) {
+//     // Call our function to generate a table body
+//     displayResults(data);
 
-  });
-});
+//   });
+// });
 
-// When user clicks the name sort button, display the table sorted by name
-$("#link-sort").on("click", function () {
-  // Set new column as currently-sorted (active)
-  setActive("#link");
+// // When user clicks the name sort button, display the table sorted by name
+// $("#link-sort").on("click", function () {
+//   // Set new column as currently-sorted (active)
+//   setActive("#link");
 
-  // Do an api call to the back end for json with all animals sorted by name
-  $.getJSON("/name", function (data) {
-    // Call our function to generate a table body
-    displayResults(data);
-  });
-});
+//   // Do an api call to the back end for json with all animals sorted by name
+//   $.getJSON("/name", function (data) {
+//     // Call our function to generate a table body
+//     displayResults(data);
+//   });
+// });
